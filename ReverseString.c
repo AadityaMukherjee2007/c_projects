@@ -1,25 +1,38 @@
 #include <stdio.h>
 
+int len(char s[]);
+
 int main()
 {
-    int n = 10;
+    int n = 100, l;
     char str[n];
     printf("Text: ");
-    scanf("%s", str);
+    scanf("%[^\n]%*c", str);
 
-    for (int i = 0; i < n; i++)
+    l = len(str);
+
+    for (int i = 0; i < l; i++)
     {
-        for (int j = 0; j < n - (i + 1); j++)
+        if (i >= (l - 1 - i))
         {
-            char temp = str[j];
-            //printf("%c", temp);
-            str[j] = str[j + 1];
-            str[j + 1] = temp;
+            break;
         }
-        printf("%s", str);
+        char temp = str[i];
+        str[i] = str[l - 1 - i];
+        str[l - 1 - i] = temp;
     }
 
     printf("Reverse: %s\n", str);
 
     return 0;
+}
+
+int len(char s[])
+{
+    int i = 0;
+    while (s[i] != '\0')
+    {
+        i++;
+    }
+    return i;
 }
