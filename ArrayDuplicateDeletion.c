@@ -1,11 +1,12 @@
 #include <stdio.h>
 
 void display(int arr[], int n);
-void delDuplicate(int arr[], int n, int *duplicates);
+void delDuplicate(int arr[], int n);
+void sort(int arr[], int n);
 
 int main()
 {
-    int n = 0, duplicates = 0;
+    int n = 0;
 
     printf("Array Length: ");
     scanf("%d", &n);
@@ -18,34 +19,78 @@ int main()
         scanf("%d", &arr[i]);
     }
 
+    // int arr[] = {9, 4, 3, 5, 1, 7, 8, 9, 4, 6, 6, 5, 3, 3, 3};
+    // int n = 15;
+
     display(arr, n);
-    delDuplicate(arr, n, &duplicates);
+    delDuplicate(arr, n);
     return 0;
 }
 
 
-// Code under progress...
-void delDuplicate(int arr[], int n, int *duplicates)
+void sort(int arr[], int n)
 {
     for (int i = 0; i < n; i++)
     {
-        for (int j = i + 1; j < n; i++)
+        int smallest = arr[i], pos = i;
+        for (int j = i + 1; j < n; j++)
         {
-            if (arr[i] == arr[j])
+            if (smallest > arr[j])
             {
-                *duplicates++;
-                for (int k = j; k < n - 1; k++)
-                {
-                    arr[k] = arr[k] + arr[k + 1];
-                    arr[k + 1] = arr[k] - arr[k + 1];
-                    arr[k] = arr[k] - arr[k + 1];
-                }
+                smallest = arr[j];
+                pos = j;
             }
         }
+
+        arr[pos] = arr[i];
+        arr[i] = smallest;
     }
 
-    //arr[0] = 100;
-    //display(arr, n);
+    printf("Array after sorting: ");
+    display(arr, n);
+}
+
+
+void delDuplicate(int arr[], int n)
+{
+    sort(arr, n);
+    for (int i = 0; i <= n; i++)
+    {
+        int c = 0;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[i] != arr[j])
+            {
+                if (c == 0)
+                {
+                    // printf("c: %d\n", c);
+                    break;
+                }
+                else if (c != 0)
+                {
+                    // printf("c: %d\n", c);
+                    for (int k = i + 1; k < n - c; k++)
+                    {
+                        arr[k] = arr[k] + arr[k + c];
+                        arr[k + c] = arr[k] - arr[k + c];
+                        arr[k] = arr[k] - arr[k + c];
+                        // display(arr, n);
+                    }
+                    break;
+                }
+            }
+            else 
+            {
+                c++;
+            }
+        }
+        n -= c;
+        // display(arr, n);
+    }
+    
+    // printf("\n\nn = %d\n", n);
+    printf("Array after removing duplicates: ");
+    display(arr, n);
 }
 
 void display(int arr[], int n)
