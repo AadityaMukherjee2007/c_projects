@@ -8,7 +8,7 @@ void merge(int a[], int n1, int b[], int n2, int c[]);
 
 // functions for union and intersection
 void array_union(int a1[], int n1, int a2[], int n2);
-// void array_intersection();
+void array_intersection(int a1[], int n1, int a2[], int n2);
 
 int main()
 {
@@ -35,7 +35,15 @@ int main()
         scanf("%d", &array2[i]);
     }
 
+    // int array1[] = {1, 2, 3, 6, 7, 8}, array2[] = {2, 4, 6, 8, 0, 1, 2, 4};
+    // int len1 = 6, len2 = 8;
+
+
+    display(array1, len1);
+    display(array2, len2);
+
     array_union(array1, len1, array2, len2);
+    array_intersection(array1, len1, array2, len2);
     return 0;
 }
 
@@ -49,6 +57,59 @@ void array_union(int a1[], int n1, int a2[], int n2)
 
     printf("Union: ");
     display(UnionArray, n);
+}
+
+void array_intersection(int a1[], int n1, int a2[], int n2)
+{
+    int len = n1 > n2 ? n2 : n1;
+    int intersectionArray[len];
+    n1 = delDuplicate(a1, n1);
+    n2 = delDuplicate(a2, n2);
+
+    int x = 0, common = 0;
+
+    if (n1 > n2)
+    {
+        for (int i = 0; i < len; i++)
+        {
+            for (int j = 0; j < n1; j++)
+            {
+                // printf("i: %d, j: %d\n", i, j);
+                // printf("a1[i]: %d, a2[j]: %d\n\n", a1[i], a2[j]);
+                if (a2[i] == a1[j])
+                {
+                    intersectionArray[x++] = a2[i];
+                    // printf("%d ", a2[i]);
+                    // display(intersectionArray, len);
+                    common++;
+                    break;
+                }
+            }
+        }
+    }
+    else 
+    {
+        for (int i = 0; i < len; i++)
+        {
+            for (int j = 0; j < n1; j++)
+            {
+                // printf("i: %d, j: %d\n", i, j);
+                // printf("a1[i]: %d, a2[j]: %d\n\n", a1[i], a2[j]);
+                if (a1[i] == a2[j])
+                {
+                    // printf("%d ", a1[i]);
+                    // display(intersectionArray, len);
+                    intersectionArray[x++] = a1[i];
+                    common++;
+                    break;
+                }
+            }
+        }
+    }
+
+    int n = delDuplicate(intersectionArray, common);
+    printf("Intersection: ");
+    display(intersectionArray, n);
 }
 
 void merge(int a[], int n1, int b[], int n2, int c[])
