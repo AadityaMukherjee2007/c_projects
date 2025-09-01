@@ -1,6 +1,8 @@
+// code for set subtraction
 #include <stdio.h>
 
 void firstMinusSecond(int a[], int n1, int b[], int n2);
+int pop(int arr[], int n, int index);
 
 int main()
 {
@@ -33,5 +35,14 @@ int main()
 
 void firstMinusSecond(int a[], int n1, int b[], int n2)
 {
-    for l
+    for (int i = 0; i < n2; i++)
+    {
+        for (int j = 0; j < n1; j++)
+        {
+            if (b[i] == a[j])
+            {
+
+            }
+        }
+    }
 }
