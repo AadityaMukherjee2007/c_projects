@@ -2,6 +2,6 @@
 #define ARRAY_UTIL_H
 
 void print(int arr[], int len);
-int len(int arr[]);
+int pop(int a[], int n, int index);
 
 #endif

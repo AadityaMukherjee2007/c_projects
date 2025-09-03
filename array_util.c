@@ -4,24 +4,33 @@
 void print(int arr[], int len)
 {
     printf("[");
-    for (int i = 0; i < len - 1; i++)
+    for (int i = 0; i < len; i++)
     {
         printf("%d", arr[i]);
 
-        if (i != len - 2)
+        if (i != len - 1)
             printf(", ");
     }
     printf("]\n");
 }
 
-int len(int arr[])
+int pop(int a[], int n, int index)
 {
-    int c = 0;
+    if (index < 0 || index >= n)
+        return -1;
 
-    while (1)
+    for (int i = 0; i < n; i++)
     {
-        printf("%d", (char) arr[c]);
-        c++;
+        if (i == index)
+        {
+            for (int j = i; j < n - 1; j++)
+            {
+                a[j] = a[j] + a[j+1];
+                a[j+1] = a[j] - a[j+1];
+                a[j] = a[j] - a[j+1];
+            }
+        }
     }
-}
 
+    return n - 1;
+}
