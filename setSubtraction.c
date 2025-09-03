@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "array_util.h"
 
-#define len(arr) (sizeof(arr) / sizeof((arr)[0]))
+// #define len(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 void firstMinusSecond(int a[], int n1, int b[], int n2);
 
