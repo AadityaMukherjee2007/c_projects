@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-char* classify(h, w);
+char* classify(float h, float w);
 
 int main()
 {
@@ -16,17 +16,17 @@ int main()
     printf("Age (yr): ");
     scanf("%d", &age);
 
-    char class[] = classify(height, weight);
+    char *class = classify(height, weight);
 
-    if (class == "Overweight" || class == "Obese" && age > 40)
-        printf("Consult doctor");
+    if ((class == "Overweight" || class == "Obese") && age > 40)
+        printf("\nConsult doctor\n");
     else 
-        printf(class);
+        printf("\nBMI: %s\n", class);
 
     return 0;
 }
 
-char* classify(h, w)
+char* classify(float h, float w)
 {
     float bmi = w / (h * h);
 
@@ -38,5 +38,4 @@ char* classify(h, w)
         return "Overweight";
     else if (bmi >= 30)
         return "Obese";
-    
 }
