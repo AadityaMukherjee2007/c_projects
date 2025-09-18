@@ -1,8 +1,10 @@
 // code for set subtraction
 #include <stdio.h>
+#include "array_util.h"
+
+#define len(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 void firstMinusSecond(int a[], int n1, int b[], int n2);
-int pop(int arr[], int n, int index);
 
 int main()
 {
@@ -29,6 +31,11 @@ int main()
         scanf("%d", &arr2[i]);
     }
 
+    /* int arr1[] = {1, 2, 3, 4, 5, 6, 7};
+    int arr2[] = {3, 5, 7, 9};
+    n1 = 7, n2 = 4; */
+    
+    firstMinusSecond(arr1, n1, arr2, n2);
 
     return 0;
 }
@@ -41,8 +48,14 @@ void firstMinusSecond(int a[], int n1, int b[], int n2)
         {
             if (b[i] == a[j])
             {
-
+                n1 = pop(a, n1, j);
+                // printf("%d\n", n1);
+                // print(a, n1);
+                break;
             }
         }
     }
+    // printf("\n\n%d\n", n1);
+
+    print(a, n1);
 }

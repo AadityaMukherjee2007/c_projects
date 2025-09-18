@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include "array_util.h"
 
-int pop(int a[], int n, int index);
-
-int main()
+void print(int arr[], int len)
 {
-    int arr[] = {9, 8, 4, 3, 2, 5, 1, 6, 7};
-    print(arr, 9);
-    int n = pop(arr, 9, 5);
-    print(arr, n);
+    printf("[");
+    for (int i = 0; i < len; i++)
+    {
+        printf("%d", arr[i]);
 
-    return 0;
+        if (i != len - 1)
+            printf(", ");
+    }
+    printf("]\n");
 }
 
 int pop(int a[], int n, int index)
