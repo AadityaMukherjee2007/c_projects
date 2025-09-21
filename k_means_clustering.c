@@ -1,4 +1,4 @@
-// proram on K-Means Clustering
+// program on K-Means Clustering
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
