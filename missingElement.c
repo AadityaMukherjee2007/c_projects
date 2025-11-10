@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 
+// helper functions
 void inputArray(int arr[], int n);
 void display(int arr[], int n);
 void missing(int arr[], int n);
