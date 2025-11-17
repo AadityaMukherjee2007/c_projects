@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-void merge(int a[], int n1, int b[], int n2, int c[]);
+void merge(int a[], int n1, int b[], int n2, int c[], int *x);
 void display(int arr[], int n);
 
 int main()
 {
-    int n1 = 0, n2 = 0;
+    int n1 = 0, n2 = 0, x = 0;
 
     printf("Enter length array 1: ");
     scanf("%d", &n1);
@@ -30,37 +30,38 @@ int main()
     }
 
     int mergedArray[n1 + n2];
-    merge(arr1, n1, arr2, n2, mergedArray);
-    display(mergedArray, n1 + n2);
+    merge(arr1, n1, arr2, n2, mergedArray, &x);
+    display(mergedArray, x);
 }
 
-void merge(int a[], int n1, int b[], int n2, int c[])
+void merge(int a[], int n1, int b[], int n2, int c[], int *x)
 {
-    int i = 0, j = 0, x = 0;
+    int i = 0, j = 0;
     while (i < n1 && j < n2)
     {
         if (a[i] < b[j])
-            c[x++] = a[i++];
+            c[*x++] = a[i++];
         else if (a[i] > b[j])
-            c[x++] = b[j++];
+            c[*x++] = b[j++];
         else 
         {
-            c[x++] = a[i++];
+            c[*x++] = a[i++];
             j++;
         }
     }
 
-    if (i == n1)
-        for (int k = j; k < n2; j++)
-            c[x++] = b[k];
-    else if (j == n2)
-        for (int k = i; k < n2; i++)
-            c[x++] = b[k];
+    printf("i: %d, j: %d", i, j);
+
+    while (i < n1)
+        c[*x++] = a[i++];
+    
+    while (j < n2)
+        c[*x++] = b[j++];
 }
 
 void display(int arr[], int n)
 {
-    printf("[");
+    printf("\n[");
     for (int i = 0; i < n; i++)
     {
         printf("%d", arr[i]);
