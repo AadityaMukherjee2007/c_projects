@@ -1,25 +1,25 @@
 #include <stdio.h>
 
-void fibonacci(int a, int b, int n);
+int fibonacci(int a, int b, int n);
 
 int main()
 {
-    fibonacci(0, 1, 10);
+    int n;
+    printf("n: ");
+    scanf("%d", &n);
+
+    fibonacci(0, 1, n);
     return 0;
 }
 
-void fibonacci(int a, int b, int n)
+int fibonacci(int a, int b, int n)
 {
-    if (n == 1)
+    if (n == 0)
     {
-        printf("%d\n", a);
-        return;
+        printf("\n");
+        return 0;
     }
 
-    printf("%d, ", a);
-    int c = a + b;
-    a = b;
-    b = c;
-    return fibonacci(a, b, n - 1);
-    
+    printf("%d ", a);
+    return fibonacci(b, a+b, n-1);
 }
