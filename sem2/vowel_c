@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int count_vowels(char *str);
+
+int main()
+{
+	char s[100];
+	printf("String: ");
+	scanf("%[^\n]", s);
+	
+	int count = count_vowels(s);
+	printf("Vowels: %d\n", count);	
+	
+	return 0;
+}
+
+int count_vowels(char *str)
+{
+	int i, c;
+	i = 0, c = 0;
+	while (*(str + i) != '\0')
+	{
+		if (*(str + i) == 'a' || *(str + i) == 'A' ||
+			*(str + i) == 'e' || *(str + i) == 'E' ||
+			*(str + i) == 'i' || *(str + i) == 'I' ||
+			*(str + i) == 'o' || *(str + i) == 'O' ||
+			*(str + i) == 'u' || *(str + i) == 'U'
+		)
+			c++;
+		i++;
+	}
+	
+	return c;
+}
